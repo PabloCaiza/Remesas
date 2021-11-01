@@ -1,1 +1,1 @@
-![alt text] (https://github.com/PabloCaiza/Remesas/remesas.drawio.png)
+![diagram](https://github.com/PabloCaiza/Remesas/blob/main/remesas.drawio.png)

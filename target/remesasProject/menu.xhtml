@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <div style=" margin: 0 auto;">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h:form id="form">
+
+            <h6 class="dropdown-header" style="color: white">Menu</h6>
+            <br/>
+            <p:commandLink value="Home" class="dropdown-item h5"
+                    style="color: white;text-decoration:none;"
+                           action="home.xhtml"
+            >
+                <i class="pi pi-home"/>
+
+            </p:commandLink>
+            <p:repeat value="#{menuContoller.menuItems}" var="item">
+                <p:link value="#{item.name}" outcome="#{item.page}" class="dropdown-item h5"
+                        style="color: white;text-decoration:none;"
+
+                />
+                <br/>
+            </p:repeat>
+            <p:commandLink style="text-decoration: none;color: white" value="Cerrar Session"
+                           action="#{sessionController.closeSession()}"
+                           class="dropdown-item h5"
+            >
+                <i class="pi pi-power-off"/>
+
+            </p:commandLink>
+
+
+        </h:form>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
+</ui:composition>

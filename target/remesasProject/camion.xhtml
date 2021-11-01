@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputScript library="js" name="bootstrap.min.js"/>
+</h:head>
+<h:body>
+    <div>
+        <div class="row">
+            <div class="col-2" style="background-color: #495057">
+
+                <ui:include src="menu.xhtml"/>
+            </div>
+            <div class="col-10">
+                <br/>
+                <br/>
+
+                <h:form id="formCamion">
+                    <p:commandButton value="Crear Camion" icon="pi pi-plus"
+                                     oncomplete="PF('dlg1').show()" action="#{vehicleController.selectVehicle()}"
+                                     update="dialog"
+                                     style="color: white;background: green"
+                    />
+                    <p:dataTable id="dtCamiones" var="vehicle" value="#{vehicleController.vehicles}">
+                        <p:column headerText="ID">
+                            <h:outputLabel value="#{vehicle.id}"/>
+                        </p:column>
+                        <p:column headerText="Placa">
+                            <h:outputLabel value="#{vehicle.plate}"/>
+                        </p:column>
+                        <p:column headerText="Unidad">
+                            <h:outputLabel value="#{vehicle.unit}"/>
+                        </p:column>
+                        <p:column headerText="Marcar">
+                            <h:outputLabel value="#{vehicle.brand}"/>
+                        </p:column>
+                        <p:column headerText="Color">
+                            <h:outputLabel value="#{vehicle.color}"/>
+                        </p:column>
+                        <p:column headerText="Modelo">
+                            <h:outputLabel value="#{vehicle.modelo}"/>
+                        </p:column>
+                        <p:column headerText="Tipo">
+                            <h:outputLabel value="#{vehicle.vehiculeType.name()}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Edit" oncomplete="PF('dlg1').show()"
+                                             action="#{vehicleController.selectVehicle(vehicle)}"
+                                             update="dialog"/>
+                            <p:commandButton value="Delete" styleClass="ui-button-danger" icon="pi pi-times"
+                                             action="#{vehicleController.deleteVehicle(vehicle)}" update="dtCamiones">
+
+                                <p:confirm header="Confirmacion" message="Desea eliminar el camion?"
+                                           icon="pi pi-info-circle"/>
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+
+                </h:form>
+
+                <p:dialog id="dialog" header="Camion" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade"
+                          closeOnEscape="true">
+                    <h:form id="formEdit">
+                        <p:growl id="messages" sticky="true" showDetail="true" life="3000"/>
+                        <p:inputText placeholder="Placa" value="#{vehicleController.selectedVehicle.plate}"
+                                     required="true"
+                                     requiredMessage="ingrese la placa"/>
+                        <p:inputText placeholder="Unidad" value="#{vehicleController.selectedVehicle.unit}"
+                                     required="true"
+                                     requiredMessage="ingrese la unidad"/>
+                        <p:inputText placeholder="Marca" value="#{vehicleController.selectedVehicle.brand}"
+                                     required="true"
+                                     requiredMessage="ingrese la marca"/>
+                        <p:inputText placeholder="Color" value="#{vehicleController.selectedVehicle.color}"
+                                     required="true"
+                                     requiredMessage="ingrese el color"/>
+                        <p:inputText placeholder="Modelo" value="#{vehicleController.selectedVehicle.modelo}"
+                                     required="true"
+                                     requiredMessage="ingrese el modelo"/>
+
+                        <p:selectOneMenu value="#{vehicleController.selectedVehicle.vehiculeType}">
+                            <f:selectItems value="#{vehicleController.typeOfVehicles}" var="type"
+                                           itemLabel="#{type.toString()}"/>
+                        </p:selectOneMenu>
+                        <p:commandButton value="Crear o Actualizar Camion" action="#{vehicleController.createVehicle()}"
+                                         update=":formCamion :formEdit"
+                                         oncomplete="PF('dlg1').hide();"
+                        />
+
+                    </h:form>
+                </p:dialog>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"/>
+                </p:confirmDialog>
+            </div>
+        </div>
+    </div>
+
+</h:body>
+
+
+</html>

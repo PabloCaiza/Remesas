@@ -1,1 +1,1 @@
-![alt text] (/remesas.drawio.png)
+![alt text] (https://github.com/PabloCaiza/Remesas/remesas.drawio.png)

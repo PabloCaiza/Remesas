@@ -6,7 +6,6 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
   <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-  <h:outputScript library="js" name="bootstrap.min.js"/>
 </h:head>
 <h:body>
   <div >
@@ -16,9 +15,21 @@
         <ui:include src="menu.xhtml"/>
       </div>
       <div class="col-10">
+        <p:commandButton value="Acerca de"  onclick="PF('dlg1').show()"  icon="pi pi-external-link"
+          style="margin-left: 90%"/>
+        <h1 style="text-align: center">Compañía de remesas JRK</h1>
         <div  style="margin-left: 30%" >
           <p:graphicImage name="images/home.jpg"  />
         </div>
+
+        <p:dialog header="Acerca de" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">
+           <p:outputLabel value="Desarrolladores: Roberto González Hernández,José Mario Oviedo Herrera y Kenneth Rodríguez Carvajal"/>
+          <br/>
+          <p:outputLabel value="Nombre del Sistema: Remesas"/>
+          <br/>
+          <p:outputLabel value="Version: 1.0.0"/>
+          <br/>
+        </p:dialog>
 
 
       </div>

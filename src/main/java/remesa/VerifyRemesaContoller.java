@@ -1,5 +1,6 @@
 package remesa;
 
+import agent.AgentService;
 import session.SessionController;
 import user.UserService;
 
@@ -21,6 +22,8 @@ public class VerifyRemesaContoller implements Serializable {
     private List<Remesa> remesas;
     @Inject
     private RemesaService remesaService;
+    @Inject
+    private AgentService agentService;
 
 
     @PostConstruct
@@ -35,6 +38,9 @@ public class VerifyRemesaContoller implements Serializable {
 
     public void selectRemesa(Remesa remesa){
         selectedRemesa=remesa;
+        selectedRemesa.setAgents(selectedRemesa.getAgents().stream().map(agent ->
+                agentService.getAgentbyId(agent.getId()))
+                    .collect(Collectors.toList()));
     }
 
     public Remesa getSelectedRemesa() {

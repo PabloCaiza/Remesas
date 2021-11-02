@@ -32,10 +32,10 @@ public class Remesa {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_receptor")
     private User receiver;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_camion")
     private Vehicle vehicle;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "agente_remesa",
             joinColumns = {@JoinColumn(name = "id_remesa")},
